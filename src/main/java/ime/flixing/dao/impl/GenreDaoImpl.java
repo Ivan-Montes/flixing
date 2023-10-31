@@ -1,5 +1,7 @@
 package ime.flixing.dao.impl;
 
-public class GenreDaoImpl {
+import ime.flixing.dao.GenreDao;
+
+public class GenreDaoImpl implements GenreDao{
 
 }
