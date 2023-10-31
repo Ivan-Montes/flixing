@@ -1,5 +1,64 @@
 package ime.flixing.dao.impl;
 
-public class FlixDaoImpl {
+import java.util.List;
+
+import ime.flixing.dao.FlixDao;
+import ime.flixing.entity.Flix;
+import ime.flixing.util.HibernateUtil;
+
+import org.hibernate.Session;
+
+public class FlixDaoImpl implements FlixDao{
+
+	@Override
+	public List<Flix> getAllFlix() {
+		Session session = HibernateUtil.getSession().openSession();
+		List<Flix>list = session.createQuery("FROM Flix", Flix.class).list();
+		session.close();
+		return list;
+	}
+
+	@Override
+	public Flix getFlixById(Long id) {
+		Session session = HibernateUtil.getSession().openSession();
+		Flix flixFound = (Flix) session.get(Flix.class, id);
+		session.close();
+		return flixFound;
+	}
+
+	@Override
+	public Flix saveFlix(Flix flix) {
+		Session session = HibernateUtil.getSession().openSession();
+		session.beginTransaction();
+		session.persist(flix);
+		session.getTransaction().commit();
+		Flix flixFound = (Flix) session.get(Flix.class, flix.getFlixId());
+		session.close();
+		return flixFound;
+	}
+
+	@Override
+	public Flix updateFlix(Long id, Flix flix) {
+		Session session = HibernateUtil.getSession().openSession();
+		session.beginTransaction();
+		Flix flixedo = session.get(Flix.class, id);
+		flixedo.setGenre(flix.getGenre());
+		flixedo.setTitle(flix.getTitle());
+		session.persist(flixedo);
+		session.getTransaction().commit();
+		Flix flixFound = (Flix) session.get(Flix.class, id);
+		session.close();
+		return flixFound;
+	}
+
+	@Override
+	public void deleteFlix(Long id) {
+		Session session = HibernateUtil.getSession().openSession();
+		session.beginTransaction();
+		Flix flixFound = (Flix) session.get(Flix.class, id);
+		session.remove(flixFound);
+		session.getTransaction().commit();
+        session.close();		
+	}
 
 }
