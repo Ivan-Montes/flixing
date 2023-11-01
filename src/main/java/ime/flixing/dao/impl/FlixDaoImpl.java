@@ -7,13 +7,15 @@ import ime.flixing.entity.Flix;
 import ime.flixing.util.HibernateUtil;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class FlixDaoImpl implements FlixDao{
 
 	@Override
 	public List<Flix> getAllFlix() {
 		Session session = HibernateUtil.getSession().openSession();
-		List<Flix>list = session.createQuery("FROM Flix", Flix.class).list();
+		 Query<Flix> query = session.createQuery("FROM Flix", Flix.class);
+		 List<Flix>list = query.list();
 		session.close();
 		return list;
 	}
