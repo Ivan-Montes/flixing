@@ -1,5 +1,7 @@
 package ime.flixing.dao.impl;
 
-public class PersonDatoImpl {
+import ime.flixing.dao.PersonDao;
+
+public class PersonDaoImpl implements PersonDao{
 
 }
