@@ -1,5 +1,14 @@
 package ime.flixing.dao;
 
-public interface GenreDao {
+import java.util.List;
+import ime.flixing.entity.Genre;
 
+public interface GenreDao {
+	
+	List<Genre>getAllGenre();
+	Genre getGenreById(Long id);
+	Genre saveGenre(Genre genre);
+	Genre updateGenre(Long id, Genre genre);
+	void deleteGenre(Long id);
+	
 }
