@@ -14,8 +14,8 @@ public class FlixDaoImpl implements FlixDao{
 	@Override
 	public List<Flix> getAllFlix() {
 		Session session = HibernateUtil.getSession().openSession();
-		 Query<Flix> query = session.createQuery("FROM Flix", Flix.class);
-		 List<Flix>list = query.list();
+		Query<Flix> query = session.createQuery("FROM Flix", Flix.class);
+		List<Flix>list = query.list();
 		session.close();
 		return list;
 	}
@@ -23,7 +23,7 @@ public class FlixDaoImpl implements FlixDao{
 	@Override
 	public Flix getFlixById(Long id) {
 		Session session = HibernateUtil.getSession().openSession();
-		Flix flixFound = (Flix) session.get(Flix.class, id);
+		Flix flixFound = session.get(Flix.class, id);
 		session.close();
 		return flixFound;
 	}
@@ -34,7 +34,7 @@ public class FlixDaoImpl implements FlixDao{
 		session.beginTransaction();
 		session.persist(flix);
 		session.getTransaction().commit();
-		Flix flixFound = (Flix) session.get(Flix.class, flix.getFlixId());
+		Flix flixFound = session.get(Flix.class, flix.getFlixId());
 		session.close();
 		return flixFound;
 	}
@@ -48,7 +48,7 @@ public class FlixDaoImpl implements FlixDao{
 		flixedo.setTitle(flix.getTitle());
 		session.persist(flixedo);
 		session.getTransaction().commit();
-		Flix flixFound = (Flix) session.get(Flix.class, id);
+		Flix flixFound = session.get(Flix.class, id);
 		session.close();
 		return flixFound;
 	}
