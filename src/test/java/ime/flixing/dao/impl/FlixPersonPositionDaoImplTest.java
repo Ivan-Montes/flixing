@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import ime.flixing.entity.Flix;
+import ime.flixing.entity.FlixPersonPosition;
 import ime.flixing.entity.FlixPersonPositionId;
 import ime.flixing.entity.Genre;
 import ime.flixing.entity.Person;
@@ -20,6 +21,7 @@ import ime.flixing.entity.Position;
 
 @ExtendWith(MockitoExtension.class)
 class FlixPersonPositionDaoImplTest {
+	
 	@Mock
 	private SessionFactory sessionFactory;
 	
@@ -38,6 +40,7 @@ class FlixPersonPositionDaoImplTest {
 	private Long personTestId = 1L;
 	private Position positionTest;
 	private Long positionTestId = 1L;
+	private FlixPersonPosition flixPersonPositionTest;
 	private FlixPersonPositionId flixPersonPositionIdTest;
 	
 	@BeforeEach
@@ -59,11 +62,22 @@ class FlixPersonPositionDaoImplTest {
 		positionTest.setName("Master");
 		positionTest.setDescription("Leader in dungeon");
 		
-		flixPersonPositionIdTest = new FlixPersonPositionId(flixTestId, personTestId, positionTestId);	
+		flixPersonPositionIdTest = new FlixPersonPositionId(flixTestId, personTestId, positionTestId);
+		flixPersonPositionTest = new FlixPersonPosition(flixPersonPositionIdTest,
+														flixTest,
+														personTest,
+														positionTest);
+		
 	}
 	
 	@Test
-	void test() {
+	void flixPersonPosition_saveFlixPersonPosition_ReturnObject() {
+		assertTrue( true );
+	}
+	
+
+	@Test
+	void flixPersonPosition_deleteFlixPersonPosition_ReturnObject() {
 		assertTrue( true );
 	}
 
