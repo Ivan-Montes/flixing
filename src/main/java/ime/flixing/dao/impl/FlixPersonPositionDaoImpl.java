@@ -1,6 +1,9 @@
 package ime.flixing.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import ime.flixing.dao.FlixPersonPositionDao;
 import ime.flixing.entity.Flix;
@@ -44,6 +47,24 @@ public class FlixPersonPositionDaoImpl implements FlixPersonPositionDao {
 		session.getTransaction().commit();
 		session.close();
 		
+	}
+
+	@Override
+	public List<FlixPersonPosition> getAllFlixPersonPosition() {
+		Session session = HibernateUtil.getSession().openSession();
+		Query<FlixPersonPosition> query = session.createQuery("FROM FlixPersonPosition", FlixPersonPosition.class);
+		List<FlixPersonPosition> list = query.list();	
+		session.close();	
+		return list;
+	}
+
+	@Override
+	public FlixPersonPosition getFlixPersonPositionById(Long flixId, Long personId, Long positionId) {
+		Session session = HibernateUtil.getSession().openSession();
+		FlixPersonPositionId flixPersonPositionId = new FlixPersonPositionId(flixId, personId, positionId);
+		FlixPersonPosition flixPersonPosition = session.get(FlixPersonPosition.class, flixPersonPositionId);
+		session.close();
+		return flixPersonPosition;
 	}
 
 }
