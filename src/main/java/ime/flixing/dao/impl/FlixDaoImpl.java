@@ -57,7 +57,7 @@ public class FlixDaoImpl implements FlixDao{
 	public void deleteFlix(Long id) {
 		Session session = HibernateUtil.getSession().openSession();
 		session.beginTransaction();
-		Flix flixFound = (Flix) session.get(Flix.class, id);
+		Flix flixFound = session.get(Flix.class, id);
 		session.remove(flixFound);
 		session.getTransaction().commit();
         session.close();		
