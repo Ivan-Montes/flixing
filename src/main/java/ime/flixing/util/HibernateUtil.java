@@ -1,18 +1,22 @@
 package ime.flixing.util;
 
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
+import lombok.AccessLevel;
 import ime.flixing.entity.*;
+import lombok.NoArgsConstructor;
 
+
+@NoArgsConstructor( access= AccessLevel.PRIVATE )
 public class HibernateUtil {
 
-private static final SessionFactory sessionFactory;
-
-
+	private static final SessionFactory sessionFactory;
+	
 	static {
 		
 			final ServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -37,11 +41,10 @@ private static final SessionFactory sessionFactory;
 		            .buildMetadata();		        
 		        sessionFactory = metadata.buildSessionFactory();
 		        
-			} catch (Throwable ex) {
-				
-			StandardServiceRegistryBuilder.destroy( registry );
-			System.err.println(" ##==== Inicio de SessionFactory erroneo ====##\n" + ex);
-			throw new ExceptionInInitializerError(ex);
+			
+			} catch (RuntimeException  ex) {
+				StandardServiceRegistryBuilder.destroy( registry );
+				throw new ExceptionInInitializerError(ex + " ##==== Inicio de SessionFactory erroneo => RuntimeException ====##\n ");
 		}
 	}
 
