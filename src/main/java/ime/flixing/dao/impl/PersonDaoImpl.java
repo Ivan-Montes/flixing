@@ -57,7 +57,7 @@ public class PersonDaoImpl implements PersonDao{
 	public void deletePerson(Long id) {
 		Session session = HibernateUtil.getSession().openSession();
 		session.beginTransaction();
-		Person personFound = (Person) session.get(Person.class, id);
+		Person personFound = session.get(Person.class, id);
 		session.remove(personFound);
 		session.getTransaction().commit();
         session.close();
