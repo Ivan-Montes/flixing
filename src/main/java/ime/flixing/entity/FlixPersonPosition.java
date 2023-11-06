@@ -1,5 +1,6 @@
 package ime.flixing.entity;
 
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -7,7 +8,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
 public class FlixPersonPosition {
 
@@ -42,6 +41,6 @@ public class FlixPersonPosition {
 	@MapsId("positionId")
 	@JoinColumn(name = "pos_id")
 	private Position position;
-	
+
 	
 }
