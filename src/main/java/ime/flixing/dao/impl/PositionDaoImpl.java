@@ -73,4 +73,14 @@ public class PositionDaoImpl implements PositionDao{
 		
 	}
 
+	@Override
+	public Position getPositionByIdEagger(Long id) {
+		Session session = HibernateUtil.getSession().openSession();
+		Query<Position> query = session.createQuery("SELECT p FROM Position p LEFT JOIN FETCH p.flixPersonPosition WHERE p.positionId = :id", Position.class);
+		query.setParameter("id", id);
+		Position positionFound =  query.uniqueResult();
+		session.close();
+		return positionFound;
+	}
+
 }
