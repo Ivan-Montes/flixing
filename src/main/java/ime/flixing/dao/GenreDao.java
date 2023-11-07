@@ -7,6 +7,7 @@ public interface GenreDao {
 	
 	List<Genre>getAllGenre();
 	Genre getGenreById(Long id);
+	Genre getGenreByIdEagger(Long id);
 	Genre saveGenre(Genre genre);
 	Genre updateGenre(Long id, Genre genre);
 	void deleteGenre(Long id);
