@@ -1,6 +1,8 @@
 package ime.flixing.entity;
 
 
+import java.util.Objects;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -41,6 +43,19 @@ public class FlixPersonPosition {
 	@MapsId("positionId")
 	@JoinColumn(name = "pos_id")
 	private Position position;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlixPersonPosition other = (FlixPersonPosition) obj;
+		return Objects.equals(flix, other.flix) && Objects.equals(id, other.id) && Objects.equals(person, other.person)
+				&& Objects.equals(position, other.position);
+	}
 
 	
 }
