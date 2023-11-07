@@ -12,7 +12,6 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +19,8 @@ import lombok.Setter;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Objects;
+
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -29,7 +30,6 @@ import jakarta.persistence.OneToMany;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 public class Flix {
 	
 	@Id
@@ -53,6 +53,19 @@ public class Flix {
 	@Override
 	public String toString() {
 		return "Flix [flixId=" + flixId + ", title=" + title + ", genre=" + genre + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Flix other = (Flix) obj;
+		return Objects.equals(flixId, other.flixId) && Objects.equals(flixPersonPosition, other.flixPersonPosition)
+				&& Objects.equals(genre, other.genre) && Objects.equals(title, other.title);
 	}
 		
 	
