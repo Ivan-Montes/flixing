@@ -1,6 +1,7 @@
 package ime.flixing.entity;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -15,7 +16,6 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 public class Genre {
 
 	@Id
@@ -53,6 +52,19 @@ public class Genre {
 	@Override
 	public String toString() {
 		return "Genre [genreId=" + genreId + ", name=" + name + ", description=" + description + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Genre other = (Genre) obj;
+		return Objects.equals(description, other.description) && Objects.equals(flixes, other.flixes)
+				&& Objects.equals(genreId, other.genreId) && Objects.equals(name, other.name);
 	}
 	
 	
