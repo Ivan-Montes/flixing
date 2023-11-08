@@ -118,7 +118,30 @@ class PersonDaoImplTest {
 			verify(session,times(1)).close();
 		}		
 	}
-	
+
+	@Test
+	void personDaoImpl_getPersonByIdEagger_ReturnPerson() {
+		
+		try ( MockedStatic<HibernateUtil>hibernateUtilAsserts = Mockito.mockStatic(HibernateUtil.class) ){
+			hibernateUtilAsserts.when(HibernateUtil::getSession).thenReturn(sessionFactory);
+			doReturn(session).when(sessionFactory).openSession();		
+			doReturn(query).when(session).createQuery(Mockito.anyString(),Mockito.any());	
+			doReturn(personTest).when(query).uniqueResult();
+			doNothing().when(session).close();
+			
+			Person person = personDaoImpl.getPersonByIdEagger(personTestId);
+			
+			assertAll(
+					()->assertNotNull(person),
+					()->Assertions.assertThat(person).isEqualTo(personTest),
+					()->Assertions.assertThat(person.getPersonId()).isEqualTo(personTestId)
+					);
+			verify(sessionFactory,times(1)).openSession();
+			verify(session,times(1)).close();
+			
+		}		
+	}		
+			
 	@Test
 	void personDaoImpl_savePerson_ReturnPerson() {
 				
