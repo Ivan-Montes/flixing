@@ -8,6 +8,7 @@ public interface PositionDao {
 
 	List<Position>getAllPosition();
 	Position getPositionById(Long id);
+	Position getPositionByIdEagger(Long id);
 	Position savePosition(Position position);
 	Position updatePosition(Long id, Position position);
 	void deletePosition(Long id);
