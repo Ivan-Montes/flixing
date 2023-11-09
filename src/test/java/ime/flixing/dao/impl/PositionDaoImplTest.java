@@ -118,6 +118,28 @@ class PositionDaoImplTest {
 			verify(session,times(1)).close();
 		}		
 	}
+
+	@Test
+	void positionDaoImpl_getPositionByIdEagger_ReturnPosition() {
+
+		try ( MockedStatic<HibernateUtil>hibernateUtilAsserts = Mockito.mockStatic(HibernateUtil.class) ){
+			hibernateUtilAsserts.when(HibernateUtil::getSession).thenReturn(sessionFactory);
+			doReturn(session).when(sessionFactory).openSession();	
+			doReturn(query).when(session).createQuery(Mockito.anyString(), Mockito.any());	
+			doReturn(positionTest).when(query).uniqueResult();
+			doNothing().when(session).close();
+			
+			Position flix = positionDaoImpl.getPositionByIdEagger(1L);
+			
+			assertAll(
+					()->assertNotNull(flix),
+					()->Assertions.assertThat(flix).isEqualTo(positionTest),
+					()->Assertions.assertThat(flix.getPositionId()).isEqualTo(positionTestId)
+					);
+			verify(sessionFactory,times(1)).openSession();
+			verify(session,times(1)).close();
+		}		
+	}
 	
 	@Test
 	void positionDaoImpl_savePosition_ReturnPosition() {
