@@ -63,4 +63,14 @@ public class FlixDaoImpl implements FlixDao{
         session.close();		
 	}
 
+	@Override
+	public Flix getFlixByIdEagger(Long id) {
+		Session session = HibernateUtil.getSession().openSession();
+		Query<Flix> query = session.createQuery("SELECT f FROM Flix f LEFT JOIN FETCH f.flixPersonPosition WHERE f.flixId = :id", Flix.class);
+		query.setParameter("id", id);
+		Flix flixFound = query.uniqueResult();
+		session.close();
+		return flixFound;
+	}
+
 }
