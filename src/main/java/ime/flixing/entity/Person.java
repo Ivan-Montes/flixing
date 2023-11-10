@@ -2,6 +2,7 @@ package ime.flixing.entity;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -15,7 +16,6 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 public class Person {
 	
 	@Id
@@ -53,6 +52,19 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [personId=" + personId + ", name=" + name + ", surname=" + surname + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		return Objects.equals(flixPersonPosition, other.flixPersonPosition) && Objects.equals(name, other.name)
+				&& Objects.equals(personId, other.personId) && Objects.equals(surname, other.surname);
 	}
 	
 	
