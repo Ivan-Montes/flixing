@@ -121,6 +121,29 @@ class FlixDaoImplTest {
 	}
 	
 	@Test
+	void flixDaoImpl_getFlixByIdEagger_ReturnFlix() {
+		
+		try ( MockedStatic<HibernateUtil>hibernateUtilAsserts = Mockito.mockStatic(HibernateUtil.class) ){
+			
+			hibernateUtilAsserts.when(HibernateUtil::getSession).thenReturn(sessionFactory);
+			doReturn(session).when(sessionFactory).openSession();	
+			doReturn(query).when(session).createQuery(Mockito.anyString(),Mockito.any());			
+			doReturn(flixTest).when(query).uniqueResult();
+			doNothing().when(session).close();
+			
+			Flix flix = flixDaoImpl.getFlixByIdEagger(1L);
+			
+			assertAll(
+					()->assertNotNull(flix),
+					()->Assertions.assertThat(flix).isEqualTo(flixTest),
+					()->Assertions.assertThat(flix.getFlixId()).isEqualTo(flixTestId)
+					);			
+			verify(sessionFactory,times(1)).openSession();
+			verify(session,times(1)).close();
+		}
+	}
+	
+	@Test
 	void flixDaoImpl_saveFlix_ReturnFlix() {
 				
 		try ( MockedStatic<HibernateUtil>hibernateUtilAsserts = Mockito.mockStatic(HibernateUtil.class) ){
