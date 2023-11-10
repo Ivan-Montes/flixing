@@ -118,6 +118,28 @@ class GenreDaoImplTest {
 			verify(session,times(1)).close();
 		}		
 	}
+
+	@Test
+	void genreDaoImpl_getGenreByIdEagger_ReturnGenre() {
+		
+		try ( MockedStatic<HibernateUtil>hibernateUtilAsserts = Mockito.mockStatic(HibernateUtil.class) ){
+			hibernateUtilAsserts.when(HibernateUtil::getSession).thenReturn(sessionFactory);
+			doReturn(session).when(sessionFactory).openSession();		
+			doReturn(query).when(session).createQuery(Mockito.anyString(),Mockito.any());	
+			doReturn(genreTest).when(query).uniqueResult();
+			doNothing().when(session).close();
+			
+			Genre genre = genreDaoImpl.getGenreByIdEagger(genreTestId);
+			
+			assertAll(
+					()->assertNotNull(genre),
+					()->Assertions.assertThat(genre).isEqualTo(genreTest),
+					()->Assertions.assertThat(genre.getGenreId()).isEqualTo(genreTestId)
+					);
+			verify(sessionFactory,times(1)).openSession();
+			verify(session,times(1)).close();
+		}		
+	}
 	
 	@Test
 	void genreDaoImpl_saveGenre_ReturnGenre() {
