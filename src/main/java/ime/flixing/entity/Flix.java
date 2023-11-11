@@ -38,7 +38,7 @@ public class Flix {
 	@Max(33)
 	private Long flixId;
 	
-	@Column( nullable = false, length = 100 )
+	@Column( nullable = false, length = 50 )
 	@Size(min=1, max=50)
 	@Pattern( regexp = "[a-zA-Z0-9\\s\\-&\\?\\¿\\!\\¡]+")
 	private String title;
