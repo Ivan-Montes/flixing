@@ -29,6 +29,16 @@ public class PersonDaoImpl implements PersonDao{
 	}
 
 	@Override
+	public Person getPersonByIdEagger(Long id) {
+		Session session = HibernateUtil.getSession().openSession();
+		Query<Person> query = session.createQuery("SELECT p FROM Person p LEFT JOIN FETCH p.flixPersonPosition WHERE p.personId = :id", Person.class);
+		query.setParameter("id", id);
+		Person personFound = query.uniqueResult();
+		session.close();
+		return personFound;
+	}
+
+	@Override
 	public Person savePerson(Person person) {
 		Session session = HibernateUtil.getSession().openSession();
 		session.beginTransaction();
