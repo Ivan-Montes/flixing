@@ -18,7 +18,7 @@ public class FlixGui {
 		
 		while(sentry) {
 
-				menuOptionsFlix();
+				menuOptions();
 
 				System.out.print(DecoHelper.MSG_VOLVER);
 				
@@ -63,7 +63,7 @@ public class FlixGui {
 	}
 	
 	
-	private void menuOptionsFlix() {
+	private void menuOptions() {
 		
 		System.out.println("\n");
 		DecoHelper.runDecoSecond.run();
@@ -126,26 +126,74 @@ public class FlixGui {
 		String flixCode = Prompter.readOptWithMsg(DecoHelper.MSG_WRITE_COD);
 		
 		if ( Checker.checkDigits(flixCode) ) {
+			
 			FlixDao flixDaoImpl = new FlixDaoImpl();
 			Flix flixFound = flixDaoImpl.getFlixById(Long.parseLong(flixCode));
 			
 			if ( flixFound != null ) {
+				
 				System.out.println(flixFound);
 				String name = Prompter.readOptWithMsg(DecoHelper.MSG_WRITE_NEWNAME);
 				String genreCod = Prompter.readOptWithMsg(DecoHelper.MSG_WRITE_NEWCOD_GENRE);
 				
 				if ( Checker.checkFlixTitle(name) && Checker.checkDigits(genreCod) ) {
+					
 					GenreDao genreDaoImpl = new GenreDaoImpl();
-					Genre genre = genreDaoImpl.getGenreById(Long.parseLong(genreCod)); // GENRE COD MAYBE NULL
-					Flix flix = new Flix();
-					flix.setTitle(name);
-					flix.setGenre(genre);
-					Flix flixSaved = flixDaoImpl.updateFlix(Long.parseLong(flixCode), flix);
-					System.out.println(flixSaved);
+					Genre genre = genreDaoImpl.getGenreById(Long.parseLong(genreCod));
+					
+					if ( genre != null ) {
+						
+						Flix flix = new Flix();
+						flix.setTitle(name);
+						flix.setGenre(genre);
+						Flix flixSaved = flixDaoImpl.updateFlix(Long.parseLong(flixCode), flix);
+						System.out.println(flixSaved);
+						
+					}else {
+						System.out.println("\t" + DecoHelper.MSG_NULL_ERROR);
+					}					
 					
 				}else {
 					System.out.println("\t" + DecoHelper.MSG_DATA_ERROR);
 				}
+				
+			}else {
+				System.out.println("\t" + DecoHelper.MSG_NULL_ERROR);
+			}			
+			
+		}else {
+			System.out.println("\t" + DecoHelper.MSG_COD_ERROR);
+		}		
+		
+	}
+
+	private void deleteFlixOption() {
+		
+		String flixCode = Prompter.readOptWithMsg(DecoHelper.MSG_WRITE_COD);
+		
+		if ( Checker.checkDigits(flixCode) ) {
+			
+			FlixDao flixDaoImpl = new FlixDaoImpl();
+			Flix flixFound = flixDaoImpl.getFlixByIdEagger(Long.parseLong(flixCode));
+			
+			if ( flixFound != null ) {
+				
+				System.out.println(flixFound);
+				
+				if ( Checker.checkConfirmation( Prompter.askConfirmation() ) ) {
+					
+					if ( flixFound.getFlixPersonPosition().isEmpty() ) {
+						
+						flixDaoImpl.deleteFlix( Long.parseLong(flixCode) );
+						System.out.println(DecoHelper.MSG_SUCCESSFULLY);
+						
+					}
+					else {
+						System.out.println("\t" + DecoHelper.MSG_ERROR_DELETE_ASSOCIATED_ITEMS);
+					}
+					
+				}
+				
 			}else {
 				System.out.println("\t" + DecoHelper.MSG_NULL_ERROR);
 			}			
@@ -153,11 +201,6 @@ public class FlixGui {
 		}else {
 			System.out.println("\t" + DecoHelper.MSG_COD_ERROR);
 		}
-		
-		
-	}
-
-	private void deleteFlixOption() {
 		
 	}
 	
