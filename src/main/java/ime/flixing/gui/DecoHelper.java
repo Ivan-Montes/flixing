@@ -29,9 +29,14 @@ public class DecoHelper {
 	public static final String MSG_OPTERROR = "Wrong option";
 	public static final String MSG_COD_ERROR = "Wrong code";
 	public static final String MSG_DATA_ERROR = "Some data is Wrong";
-	public static final String MSG_WRITE_COD = "Write a valid code ";
-	public static final String MSG_WRITE_NAME = "Write a name ";
-	public static final String MSG_WRITE_COD_GENRE = "Write a cod GENRE ";
-	public static final String MSG_WRITE_NEWNAME = "Write a name ";
-	public static final String MSG_WRITE_NEWCOD_GENRE = "Write a cod GENRE ";
+	public static final String MSG_WRITE_COD = "Next, Write a valid code ";
+	public static final String MSG_WRITE_NAME = "Now, Write a name ";
+	public static final String MSG_WRITE_COD_GENRE = "Please next Write a cod GENRE ";
+	public static final String MSG_WRITE_DESCRIPTION = "Now, Write a description ";
+	public static final String MSG_WRITE_NEWNAME = "Please now, Write a new name ";
+	public static final String MSG_WRITE_NEWCOD_GENRE = "Write a new cod GENRE ";
+	public static final String MSG_WRITE_NEWDESCRIPTION = "Now, Write a new description ";
+	public static final String MSG_ASK_CONFIRMATION = "Enter Y/N to confirm: ";
+	public static final String MSG_SUCCESSFULLY = "Process complete successfully";
+	public static final String MSG_ERROR_DELETE_ASSOCIATED_ITEMS = "Some items are still associated to this entity. Impossible to delete. Please, first empty the list";
 }
