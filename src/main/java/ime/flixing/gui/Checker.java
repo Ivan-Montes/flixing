@@ -19,5 +19,21 @@ public class Checker {
 		
 	}
 
+	public static final boolean checkConfirmation(String n) {
+		
+		return n.matches("[yY]");
+		
+	}
 	
+	public static final boolean checkName(String str) {
+		
+		return str.matches("[a-zA-Z\\s\\-&]+") && str.length() <= 50;
+		
+	}
+	
+	public static final boolean checkDescription(String str) {
+		
+		return str.matches("[a-zA-Z0-9\\s\\-&]+") && str.length() <= 100;
+		
+	}
 }
