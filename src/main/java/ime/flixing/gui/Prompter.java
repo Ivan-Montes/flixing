@@ -7,23 +7,27 @@ public class Prompter {
 
 	public static final String readOpt() {
 		
-		String tempOpt = "";
 		Scanner scanner = new Scanner(System.in);
-		tempOpt =  scanner.nextLine();
-		return tempOpt;
+		return  scanner.nextLine();
 		
 	}	
 
 	public static final String readOptWithMsg(String msg) {
 		
-		String tempOpt = "";
 		Scanner scanner = new Scanner(System.in);
         System.out.println("\n" + msg + "\n");
-		tempOpt =  scanner.nextLine();
-		return tempOpt;
+		return scanner.nextLine();
 		
 	}
 	
+
+	public static final String askConfirmation() {
+		
+		Scanner scanner = new Scanner(System.in);
+        System.out.println("\n" + DecoHelper.MSG_ASK_CONFIRMATION + "\n");
+		return scanner.nextLine();
+		
+	}
 	public static final void pressIntroToContinue(){
 		
         Scanner scanner = new Scanner(System.in);
