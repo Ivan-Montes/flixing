@@ -1,9 +1,7 @@
 package ime.flixing.gui;
 
-import java.io.*;
-import java.util.*;
 
-import ime.flixing.gui.submenu.FlixGui;
+import ime.flixing.gui.submenu.*;
 
 public class MainGui {	
 	
@@ -29,15 +27,15 @@ public class MainGui {
 	                 break;
 	                 
 	             case "2":
-	            	 Prompter.pressIntroToContinue();            	 
+	            	 new GenreGui().init();        	 
 	                 break;
 	                 
 	             case "3":
-	            	 Prompter.pressIntroToContinue();
+	            	 new PersonGui().init();
 	                 break;
 	                 
 	             case "4":
-	            	 Prompter.pressIntroToContinue();
+	            	 new PositionGui().init();
 	                 break;
 
 	             case "5":
@@ -79,8 +77,6 @@ public class MainGui {
         
 	}
 	
-	
-	
 	private void menuBye() {
 		
 		System.out.println("\n");
@@ -89,36 +85,5 @@ public class MainGui {
 		DecoHelper.runDecoSecond.run();
 		
 	}
-	
-	
-	private String pedirNumero() {
-		String leido = "";
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));		
-		String decoIgual = String.join("", Collections.nCopies(60, "=") );
-		
-		while(true) {
-				
-			try {
-				System.out.println(decoIgual);
-				System.out.print("Introduce el identificador a consultar (0 para salir):");
-				leido = br.readLine();
-				
-				if(!leido.isEmpty() && leido.matches("\\d+") ) {
-					break;
-				}
-				System.out.println("Error: Dato no válido");
-				
-			}catch(IOException e) {
-				System.out.println("Error: Fallo al leer el dato escrito por consola");
-				e.printStackTrace();
-			}
-		}		
-		
-		return leido;
-	}
-	
-	    
-
-        
-        
+		        
 }
