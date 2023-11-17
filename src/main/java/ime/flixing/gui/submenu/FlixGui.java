@@ -90,12 +90,15 @@ public class FlixGui {
 		String cod = Prompter.readOptWithMsg(DecoHelper.MSG_WRITE_COD);
 		
 		if ( Checker.checkDigits(cod) ) {
+			
 			FlixDao flixDaoImpl = new FlixDaoImpl();
 			Flix flix = flixDaoImpl.getFlixById(Long.parseLong(cod));
 			System.out.println(flix);
 			
 		}else {
+			
 			System.out.println("\t" + DecoHelper.MSG_COD_ERROR);
+			
 		}
 		
 	}
