@@ -39,7 +39,7 @@ public class MainGui {
 	                 break;
 
 	             case "5":
-	            	 Prompter.pressIntroToContinue();
+	            	 new FlixPersonPositionGui().init();
 	                 break;
 	                 
 	             case "0":
