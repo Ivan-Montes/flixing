@@ -36,4 +36,11 @@ public class Checker {
 		return str.matches("[a-zA-Z0-9\\s\\-&]+") && str.length() <= 100;
 		
 	}
+	
+
+	public static final boolean checkSurname(String str) {
+		
+		return str.matches("[a-zA-Z\\s\\-&]+") && str.length() <= 50;
+		
+	}
 }
