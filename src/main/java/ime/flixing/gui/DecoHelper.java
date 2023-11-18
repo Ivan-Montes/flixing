@@ -30,7 +30,11 @@ public class DecoHelper {
 	public static final String MSG_COD_ERROR = "Wrong code";
 	public static final String MSG_DATA_ERROR = "Some data is Wrong";
 	public static final String MSG_WRITE_COD = "Next, Write a valid code ";
+	public static final String MSG_WRITE_COD_FLIX = "Please, Write a valid FLIX code ";
+	public static final String MSG_WRITE_COD_PERSON = "Next, Write a valid PERSON code ";
+	public static final String MSG_WRITE_COD_POSITION = "Now, Write a valid POSITION code ";
 	public static final String MSG_WRITE_NAME = "Now, Write a name ";
+	public static final String MSG_WRITE_SURNAME = "Now, Write a surname ";
 	public static final String MSG_WRITE_COD_GENRE = "Please next Write a cod GENRE ";
 	public static final String MSG_WRITE_DESCRIPTION = "Now, Write a description ";
 	public static final String MSG_WRITE_NEWNAME = "Please now, Write a new name ";
