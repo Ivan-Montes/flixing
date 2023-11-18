@@ -6,11 +6,8 @@ import ime.flixing.gui.Prompter;
 
 import java.util.List;
 
-import ime.flixing.dao.FlixDao;
 import ime.flixing.dao.PositionDao;
-import ime.flixing.dao.impl.FlixDaoImpl;
 import ime.flixing.dao.impl.PositionDaoImpl;
-import ime.flixing.entity.Flix;
 import ime.flixing.entity.Position;
 
 public class PositionGui {
