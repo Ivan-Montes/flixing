@@ -7,17 +7,17 @@ public class TheUncaughtExceptionHandler implements UncaughtExceptionHandler {
 	@Override
     public void uncaughtException(Thread t, Throwable e) {
 		
-        if (e instanceof NullPointerException) {
-            handleNullPointerException((NullPointerException) e);
+        if (e instanceof NullPointerException nullE) {
+            handleNullPointerException( nullE );
             
-        } else if (e instanceof java.lang.IllegalStateException) {
-            handleIllegalStateException((java.lang.IllegalStateException) e);
+        } else if (e instanceof java.lang.IllegalStateException illegalE) {
+            handleIllegalStateException( illegalE );
             
-        } else if (e instanceof org.hibernate.service.spi.ServiceException) {
-            handleIllegalServiceException((org.hibernate.service.spi.ServiceException) e);
+        } else if (e instanceof org.hibernate.service.spi.ServiceException serviceE) {
+            handleIllegalServiceException( serviceE );
             
-        }else if (e instanceof org.hibernate.engine.jdbc.env.spi.JdbcEnvironment) {
-            handleJdbcEnvironmentException((org.hibernate.engine.jdbc.env.spi.JdbcEnvironment) e);
+        }else if (e instanceof org.hibernate.engine.jdbc.env.spi.JdbcEnvironment jdbcE) {
+            handleJdbcEnvironmentException( jdbcE );
         }
         else {
             handleGenericException(e);
