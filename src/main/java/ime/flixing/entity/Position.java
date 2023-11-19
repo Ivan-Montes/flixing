@@ -55,6 +55,11 @@ public class Position {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(description, name, positionId);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
