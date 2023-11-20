@@ -80,8 +80,8 @@ public class FlixGui {
 	}
 	
 	private void getAllFlixOption() {
-		FlixDao flixDaoImpl = new FlixDaoImpl();
-		List<Flix> list = flixDaoImpl.getAllFlix();
+		FlixDao flixDao = new FlixDaoImpl();
+		List<Flix> list = flixDao.getAllFlix();
 		list.forEach(System.out::println);
 	}
 
@@ -91,9 +91,16 @@ public class FlixGui {
 		
 		if ( Checker.checkDigits(cod) ) {
 			
-			FlixDao flixDaoImpl = new FlixDaoImpl();
-			Flix flix = flixDaoImpl.getFlixById(Long.parseLong(cod));
-			System.out.println(flix);
+			FlixDao flixDao = new FlixDaoImpl();
+			Flix flix = flixDao.getFlixById(Long.parseLong(cod));
+			
+			if ( flix != null) {				
+				
+				System.out.println(flix);
+
+			}else {
+				System.out.println("\t" + DecoHelper.MSG_NULL_ERROR);
+			}
 			
 		}else {
 			
@@ -111,11 +118,11 @@ public class FlixGui {
 		if ( Checker.checkFlixTitle(name) && Checker.checkDigits(genreCod) ) {
 			GenreDao genreDaoImpl = new GenreDaoImpl();
 			Genre genre = genreDaoImpl.getGenreById(Long.parseLong(genreCod));
-			FlixDao flixDaoImpl = new FlixDaoImpl();
+			FlixDao flixDao = new FlixDaoImpl();
 			Flix flix = new Flix();
 			flix.setTitle(name);
 			flix.setGenre(genre);
-			Flix flixSaved = flixDaoImpl.saveFlix(flix);
+			Flix flixSaved = flixDao.saveFlix(flix);
 			System.out.println(flixSaved);
 			
 		}else {
@@ -130,8 +137,8 @@ public class FlixGui {
 		
 		if ( Checker.checkDigits(flixCode) ) {
 			
-			FlixDao flixDaoImpl = new FlixDaoImpl();
-			Flix flixFound = flixDaoImpl.getFlixById(Long.parseLong(flixCode));
+			FlixDao flixDao = new FlixDaoImpl();
+			Flix flixFound = flixDao.getFlixById(Long.parseLong(flixCode));
 			
 			if ( flixFound != null ) {
 				
@@ -149,7 +156,7 @@ public class FlixGui {
 						Flix flix = new Flix();
 						flix.setTitle(name);
 						flix.setGenre(genre);
-						Flix flixSaved = flixDaoImpl.updateFlix(Long.parseLong(flixCode), flix);
+						Flix flixSaved = flixDao.updateFlix(Long.parseLong(flixCode), flix);
 						System.out.println(flixSaved);
 						
 					}else {
@@ -176,8 +183,8 @@ public class FlixGui {
 		
 		if ( Checker.checkDigits(flixCode) ) {
 			
-			FlixDao flixDaoImpl = new FlixDaoImpl();
-			Flix flixFound = flixDaoImpl.getFlixByIdEagger(Long.parseLong(flixCode));
+			FlixDao flixDao = new FlixDaoImpl();
+			Flix flixFound = flixDao.getFlixByIdEagger(Long.parseLong(flixCode));
 			
 			if ( flixFound != null ) {
 				
@@ -187,7 +194,7 @@ public class FlixGui {
 					
 					if ( flixFound.getFlixPersonPosition().isEmpty() ) {
 						
-						flixDaoImpl.deleteFlix( Long.parseLong(flixCode) );
+						flixDao.deleteFlix( Long.parseLong(flixCode) );
 						System.out.println(DecoHelper.MSG_SUCCESSFULLY);
 						
 					}
