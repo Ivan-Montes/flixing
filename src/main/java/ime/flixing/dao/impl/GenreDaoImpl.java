@@ -73,7 +73,7 @@ public class GenreDaoImpl implements GenreDao{
 	@Override
 	public Genre getGenreByIdEagger(Long id) {
 		Session session = HibernateUtil.getSession().openSession();
-		Query<Genre> query = session.createQuery("SELECT g FROM Genre g LEFT JOIN FETCH g.flixPersonPosition WHERE g.genreId = :id", Genre.class);
+		Query<Genre> query = session.createQuery("SELECT g FROM Genre g LEFT JOIN FETCH g.flixes WHERE g.genreId = :id", Genre.class);
 		query.setParameter("id", id);
 		Genre genreFound = query.uniqueResult();
 		session.close();
