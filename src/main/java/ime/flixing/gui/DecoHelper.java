@@ -1,13 +1,13 @@
 package ime.flixing.gui;
 
 import java.util.Collections;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class DecoHelper {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor( access= AccessLevel.PRIVATE )
+public class DecoHelper {
 	
 	private static final String DECOTICONO_PRIME = "#";
 	private static final String DECOTICONO_SECOND = "=";
@@ -18,11 +18,7 @@ public class DecoHelper {
 
 	public static final Runnable  runDecoPrime = () -> System.out.println(supDecoPrime.get());
 	public static final Runnable  runDecoSecond = () -> System.out.println(supDecoSecond.get());
-	
-	Function<Integer, String> funcDeco = (n) -> String.join("", Collections.nCopies(n, DECOTICONO_PRIME));
-	BiFunction<Integer, String, String> bifuDeco = (i,s) -> String.join("", Collections.nCopies(i, s));
-	BiConsumer<Integer,String> biConDeco = (i,s) -> System.out.println(String.join("", Collections.nCopies(i, s)));
-	
+		
 	public static final String MSG_VOLVER = "Enter option number (0 for back): ";
 	public static final String MSG_SALIR = "Enter option number (0 for exit): ";
 	public static final String MSG_NULL_ERROR = "Null object found";
