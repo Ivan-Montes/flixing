@@ -3,6 +3,10 @@ package ime.flixing.gui;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor( access= AccessLevel.PRIVATE )
 public class Checker {
 
 	
@@ -27,20 +31,20 @@ public class Checker {
 	
 	public static final boolean checkName(String str) {
 		
-		return str.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s\\-&\\.&,:]+") && str.length() <= 50;
+		return str.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s\\-\\.&,:]+") && str.length() <= 50;
 		
 	}
 	
 	public static final boolean checkDescription(String str) {
 		
-		return str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s\\-&\\.&,:]+") && str.length() <= 100;
+		return str.matches("[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s\\-\\.&,:]+") && str.length() <= 100;
 		
 	}
 	
 
 	public static final boolean checkSurname(String str) {
 		
-		return str.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s\\-&\\.&,:]+") && str.length() <= 50;
+		return str.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s\\-\\.&,:]+") && str.length() <= 50;
 		
 	}
 }
