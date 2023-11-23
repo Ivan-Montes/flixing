@@ -80,4 +80,13 @@ public class GenreDaoImpl implements GenreDao{
 		return genreFound;
 	}
 
+	@Override
+	public List<Genre> getGenreByName(String name) {
+		Session session = HibernateUtil.getSession().openSession();
+		Query<Genre> query = session.createQuery("FROM Genre g WHERE g.name = :name", Genre.class);
+		query.setParameter("name", name);
+		List<Genre>list = query.list();
+		session.close();
+		return list;
+	}
 }
