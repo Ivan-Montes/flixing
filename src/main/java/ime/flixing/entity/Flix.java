@@ -56,6 +56,11 @@ public class Flix {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(flixId, genre, title);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
