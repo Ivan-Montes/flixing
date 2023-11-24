@@ -55,6 +55,11 @@ public class Genre {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(description, genreId, name);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
