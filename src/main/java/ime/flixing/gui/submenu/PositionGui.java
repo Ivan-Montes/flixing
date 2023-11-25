@@ -95,7 +95,14 @@ public class PositionGui {
 		if ( Checker.checkDigits(cod) ) {
 			PositionDao positionDao = new PositionDaoImpl();
 			Position position = positionDao.getPositionById(Long.parseLong(cod));
-			System.out.println(position);
+			
+			if ( position != null) {				
+				
+				System.out.println(position);
+
+			}else {
+				System.out.println("\t" + DecoHelper.MSG_NULL_ERROR);
+			}
 			
 		}else {
 			System.out.println("\t" + DecoHelper.MSG_COD_ERROR);
@@ -108,13 +115,21 @@ public class PositionGui {
 		String description = Prompter.readOptWithMsg(DecoHelper.MSG_WRITE_DESCRIPTION);
 		
 		if( Checker.checkName(name) && Checker.checkDescription(description) ) {
-						
-			Position position = new Position();
-			position.setName(name);
-			position.setDescription(description);
+
 			PositionDao positionDao = new PositionDaoImpl();
-			Position positionSaved = positionDao.savePosition(position);
-			System.out.println(positionSaved);
+			List<Position>list = positionDao.getPositionByNameId(name);
+			
+			if( list.isEmpty() ) {
+				
+				Position position = new Position();
+				position.setName(name);
+				position.setDescription(description);
+				Position positionSaved = positionDao.savePosition(position);
+				System.out.println(positionSaved);
+				
+			}else {
+				System.out.println("\t" + DecoHelper.MSG_DUPLICATED_NAME);	
+			}
 			
 		}else {
 			System.out.println("\t" + DecoHelper.MSG_DATA_ERROR);
@@ -138,11 +153,19 @@ public class PositionGui {
 				
 				if( Checker.checkName(name) && Checker.checkDescription(description) ) {
 					
-					Position position = new Position();
-					position.setName(name);
-					position.setDescription(description);
-					Position positionSaved = positionDao.updatePosition( Long.parseLong(positionCode), position );
-					System.out.println(positionSaved);					
+					List<Position>list = positionDao.getPositionByNameId(name);
+					
+					if ( list.isEmpty() ) {
+						
+						Position position = new Position();
+						position.setName(name);
+						position.setDescription(description);
+						Position positionSaved = positionDao.updatePosition( Long.parseLong(positionCode), position );
+						System.out.println(positionSaved);	
+						
+					}else {
+						System.out.println("\t" + DecoHelper.MSG_DUPLICATED_NAME);	
+					}
 					
 				}else {
 					System.out.println("\t" + DecoHelper.MSG_DATA_ERROR);
