@@ -227,4 +227,27 @@ class PositionDaoImplTest {
 		}		
 	}	
 
+	@Test
+	void positionDaoImpl_getPositionByNameId_ReturnList() {
+		
+		try ( MockedStatic<HibernateUtil>hibernateUtilAsserts = Mockito.mockStatic(HibernateUtil.class) ){
+			hibernateUtilAsserts.when(HibernateUtil::getSession).thenReturn(sessionFactory);
+			doReturn(session).when(sessionFactory).openSession();	
+			doReturn(query).when(session).createQuery(Mockito.anyString(),Mockito.any());	
+			doReturn(List.of(positionTest)).when(query).list();	
+			doNothing().when(session).close();
+			
+			List<Position>list = positionDaoImpl.getPositionByNameId(positionTest.getName());
+			
+			assertAll(
+					()->assertNotNull(list),
+					()->Assertions.assertThat(list).hasSize(1)					
+					);
+			verify(sessionFactory,times(1)).openSession();
+			verify(session,times(1)).createQuery(Mockito.anyString(), Mockito.any());
+			verify(query,times(1)).list();
+			verify(session,times(1)).close();
+		}
+		
+	}
 }
