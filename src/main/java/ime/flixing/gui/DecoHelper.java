@@ -4,9 +4,11 @@ import java.util.Collections;
 import java.util.function.Supplier;
 
 import lombok.AccessLevel;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor( access= AccessLevel.PRIVATE )
+@Generated
 public class DecoHelper {
 	
 	private static final String DECOTICONO_PRIME = "#";
@@ -39,4 +41,7 @@ public class DecoHelper {
 	public static final String MSG_ASK_CONFIRMATION = "Enter Y/N to confirm: ";
 	public static final String MSG_SUCCESSFULLY = "Process complete successfully";
 	public static final String MSG_ERROR_DELETE_ASSOCIATED_ITEMS = "Some items are still associated to this entity. Impossible to delete. Please, first empty the list";
+	public static final String MSG_REGISTRY_REPEATED = "Repeated info: This registry is already in the database";
+	public static final String MSG_DUPLICATED_NAME = "Repeated info: This NAME is already in the database";
+
 }
