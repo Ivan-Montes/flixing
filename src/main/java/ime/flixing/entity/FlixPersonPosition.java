@@ -45,6 +45,11 @@ public class FlixPersonPosition {
 	private Position position;
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(flix, id, person, position);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
