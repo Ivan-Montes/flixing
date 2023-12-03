@@ -14,6 +14,7 @@
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sonar.coverage.exclusions>src/main/java/ime/flixing/gui/submenu/*,src/main/java/ime/flixing/gui/MainGui.java,src/main/java/ime/flixing/exception/*</sonar.coverage.exclusions>
   </properties>
 
   <dependencies>
