@@ -4,6 +4,7 @@ import ime.flixing.gui.Checker;
 import ime.flixing.gui.DecoHelper;
 import ime.flixing.gui.Prompter;
 
+import java.util.Arrays;
 import java.util.List;
 
 import ime.flixing.dao.*;
@@ -120,7 +121,9 @@ public void init() {
 		String personCod = Prompter.readOptWithMsg(DecoHelper.MSG_WRITE_COD_PERSON);
 		String positionCod = Prompter.readOptWithMsg(DecoHelper.MSG_WRITE_COD_POSITION);
 		
-		if ( Checker.checkDigits(flixCod) && Checker.checkDigits(personCod) && Checker.checkDigits(positionCod)  ) {
+		List<Boolean>checkCodsList = Arrays.asList(Checker.checkDigits(flixCod),Checker.checkDigits(personCod),Checker.checkDigits(positionCod));
+		
+		if ( checkCodsList.stream().allMatch( b -> b.equals(true) ) ) {
 			
 			FlixDao flixDao = new FlixDaoImpl();
 			Flix flixFound = flixDao.getFlixById(Long.parseLong(flixCod));
@@ -134,16 +137,32 @@ public void init() {
 			if ( flixFound != null && personFound != null && positionFound != null ) {
 				
 				FlixPersonPositionDao flixPersonPositionDao = new FlixPersonPositionDaoImpl();
-				FlixPersonPosition flixPersonPositionSaved = flixPersonPositionDao.saveFlixPersonPosition(Long.parseLong(flixCod), 
-																										Long.parseLong(personCod), 
-																										Long.parseLong(positionCod) );
-				if ( flixPersonPositionSaved != null) {				
+				FlixPersonPosition flixPersonPositionFound = flixPersonPositionDao.getFlixPersonPositionById(Long.parseLong(flixCod), 
+																											Long.parseLong(personCod), 
+																											Long.parseLong(positionCod) );
+				if( flixPersonPositionFound == null ) {
 					
-					System.out.println(flixPersonPositionSaved);
+					FlixPersonPosition flixPersonPositionSaved = flixPersonPositionDao.saveFlixPersonPosition(Long.parseLong(flixCod), 
+							Long.parseLong(personCod), 
+							Long.parseLong(positionCod) );
+					
+					if ( flixPersonPositionSaved != null) {				
+					
+						System.out.println(flixPersonPositionSaved);
+					
+					}else {
+						
+						System.out.println("\t" + DecoHelper.MSG_NULL_ERROR);
+					
+					}
 
 				}else {
-					System.out.println("\t" + DecoHelper.MSG_NULL_ERROR);
+					
+					System.out.println("\t" + DecoHelper.MSG_REGISTRY_REPEATED);
+					
 				}
+				
+				
 				
 			}else {
 				System.out.println("\t" + DecoHelper.MSG_NULL_ERROR);
