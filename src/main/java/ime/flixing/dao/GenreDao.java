@@ -11,5 +11,5 @@ public interface GenreDao {
 	Genre saveGenre(Genre genre);
 	Genre updateGenre(Long id, Genre genre);
 	void deleteGenre(Long id);
-	
+	List<Genre>getGenreByName(String name);
 }
