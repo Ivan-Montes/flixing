@@ -83,4 +83,13 @@ public class PositionDaoImpl implements PositionDao{
 		return positionFound;
 	}
 
+	@Override
+	public List<Position> getPositionByNameId(String name) {
+		Session session = HibernateUtil.getSession().openSession();
+		Query<Position> query = session.createQuery("FROM Position p WHERE p.name = :name", Position.class);
+		query.setParameter("name", name);
+		List<Position>list = query.list();
+		session.close();
+		return list;
+	}
 }
