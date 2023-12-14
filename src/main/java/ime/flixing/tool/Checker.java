@@ -1,4 +1,4 @@
-package ime.flixing.gui;
+package ime.flixing.tool;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

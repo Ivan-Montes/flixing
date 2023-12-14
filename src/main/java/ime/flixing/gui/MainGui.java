@@ -2,6 +2,7 @@ package ime.flixing.gui;
 
 
 import ime.flixing.gui.submenu.*;
+import ime.flixing.tool.DecoHelper;
 
 public class MainGui {	
 	

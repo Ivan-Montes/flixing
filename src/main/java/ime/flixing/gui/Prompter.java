@@ -2,6 +2,7 @@ package ime.flixing.gui;
 
 import java.util.Scanner;
 
+import ime.flixing.tool.DecoHelper;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

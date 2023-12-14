@@ -5,9 +5,9 @@ import java.util.List;
 import ime.flixing.dao.*;
 import ime.flixing.dao.impl.*;
 import ime.flixing.entity.*;
-import ime.flixing.gui.Checker;
-import ime.flixing.gui.DecoHelper;
 import ime.flixing.gui.Prompter;
+import ime.flixing.tool.Checker;
+import ime.flixing.tool.DecoHelper;
 
 public class FlixGui {
 

@@ -1,8 +1,8 @@
 package ime.flixing.gui.submenu;
 
-import ime.flixing.gui.Checker;
-import ime.flixing.gui.DecoHelper;
 import ime.flixing.gui.Prompter;
+import ime.flixing.tool.Checker;
+import ime.flixing.tool.DecoHelper;
 
 import java.util.List;
 

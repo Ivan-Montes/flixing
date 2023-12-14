@@ -4,7 +4,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import ime.flixing.gui.DecoHelper;
+import ime.flixing.tool.DecoHelper;
 
 public class TheUncaughtExceptionHandler implements UncaughtExceptionHandler {
 
