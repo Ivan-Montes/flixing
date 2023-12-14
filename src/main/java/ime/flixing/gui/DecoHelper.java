@@ -43,5 +43,10 @@ public class DecoHelper {
 	public static final String MSG_ERROR_DELETE_ASSOCIATED_ITEMS = "Some items are still associated to this entity. Impossible to delete. Please, first empty the list";
 	public static final String MSG_REGISTRY_REPEATED = "Repeated info: This registry is already in the database";
 	public static final String MSG_DUPLICATED_NAME = "Repeated info: This NAME is already in the database";
-
+	public static final String EX_NULL = "Se ha producido una excepción de puntero nulo.";
+	public static final String EX_ILLEGAL_STATE = "Se ha producido una excepción de java.lang.IllegalStateException.";
+	public static final String EX_ILLEGAL_SERVICE = "Se ha producido una excepción de org.hibernate.service.spi.ServiceException.";
+	public static final String EX_HIBERNATE_JDBC = "Se ha producido una excepción de org.hibernate.engine.jdbc.env.spi.JdbcEnvironment.";
+	public static final String EX_UNKNOWN = "Se ha producido una excepción desconocida.";
+	public static final String EX_MSG_TEMPLATE = "Error => %s  Description => %s";
 }
